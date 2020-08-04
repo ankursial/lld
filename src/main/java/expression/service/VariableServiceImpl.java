@@ -42,9 +42,7 @@ public class VariableServiceImpl implements VariableService {
   private boolean isVariable(Token token) {
     if (token.getTokenType().equals(TokenType.OPERAND)) {
       Operand operand = (Operand) token;
-      if (operand.getOperandType().equals(OperandType.VARIABLE)) {
-        return true;
-      }
+      return operand.getOperandType().equals(OperandType.VARIABLE);
     }
 
     return false;
