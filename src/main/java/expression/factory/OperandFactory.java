@@ -1,4 +1,4 @@
-package expression.service;
+package expression.factory;
 
 import expression.myexception.UnsupportedOperandException;
 import expression.token.operand.BooleanOperand;
