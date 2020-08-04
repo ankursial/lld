@@ -4,11 +4,18 @@ import expression.converter.ExpressionConverter;
 import expression.converter.InfixToPostfixConverter;
 import expression.myexception.InvalidEvaluationException;
 import expression.myexception.InvalidTokenException;
+import expression.myexception.UnsupportedOperandException;
+import expression.service.UserService;
+import expression.service.UserServiceImpl;
+import expression.service.VariableService;
+import expression.service.VariableServiceImpl;
 import expression.token.operand.BooleanOperand;
 import expression.token.operand.Operand;
 import expression.token.token.Token;
 import expression.tokenizer.Tokenizer;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -66,6 +73,60 @@ class InfixExpressionEvaluateAndTest {
     List<Token> postfixExpression = expressionConverter.convert(tokenized);
     ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
     Operand result = expressionEvaluator.evaluate(postfixExpression);
+    Assert.assertEquals(new BooleanOperand("false"), result);
+  }
+
+  @Test
+  void evaluateTestWithVariableResultTrue()
+      throws InvalidTokenException, InvalidEvaluationException, UnsupportedOperandException {
+
+    Map<String, Object> addressMap = new HashMap<>();
+    addressMap.put("pincode", 110060);
+    Map<String, Object> userMap = new HashMap<>();
+    userMap.put("noOfOrders", 15);
+    userMap.put("age", 15);
+    userMap.put("address", addressMap);
+
+    String input = " 5 < noOfOrders AND address#pincode < 200000 AND age < 30";
+    List<Token> tokenized = Tokenizer.tokenize(input);
+
+    ExpressionConverter expressionConverter = new InfixToPostfixConverter();
+    List<Token> postfixExpression = expressionConverter.convert(tokenized);
+
+    UserService userService = new UserServiceImpl(userMap);
+    VariableService variableService = new VariableServiceImpl(userService);
+    List<Token> expressionWithoutVariables =
+        variableService.replaceVariablesWithOperands(postfixExpression);
+
+    ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
+    Operand result = expressionEvaluator.evaluate(expressionWithoutVariables);
+    Assert.assertEquals(new BooleanOperand("true"), result);
+  }
+
+  @Test
+  void evaluateTestWithVariableResultFalse()
+      throws InvalidTokenException, InvalidEvaluationException, UnsupportedOperandException {
+
+    Map<String, Object> addressMap = new HashMap<>();
+    addressMap.put("pincode", 110060);
+    Map<String, Object> userMap = new HashMap<>();
+    userMap.put("noOfOrders", 15);
+    userMap.put("age", 15);
+    userMap.put("address", addressMap);
+
+    String input = " 5 < noOfOrders AND address#pincode < 200000 AND 30 < age";
+    List<Token> tokenized = Tokenizer.tokenize(input);
+
+    ExpressionConverter expressionConverter = new InfixToPostfixConverter();
+    List<Token> postfixExpression = expressionConverter.convert(tokenized);
+
+    UserService userService = new UserServiceImpl(userMap);
+    VariableService variableService = new VariableServiceImpl(userService);
+    List<Token> expressionWithoutVariables =
+        variableService.replaceVariablesWithOperands(postfixExpression);
+
+    ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
+    Operand result = expressionEvaluator.evaluate(expressionWithoutVariables);
     Assert.assertEquals(new BooleanOperand("false"), result);
   }
 }

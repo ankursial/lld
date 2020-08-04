@@ -12,7 +12,7 @@ public class VariableOperandExtractor implements TokenExtractor {
 
   @Override
   public boolean startsWithSupportedToken(String expression, int startNdx) {
-    final String regex = "^[a-zA-Z_$]";
+    final String regex = "^[a-zA-Z_$#]";
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(expression.substring(startNdx));
     return matcher.find();
@@ -20,7 +20,7 @@ public class VariableOperandExtractor implements TokenExtractor {
 
   @Override
   public Token extractToken(String expression, int startNdx) throws InvalidTokenException {
-    final String regex = "[a-zA-Z_$](\\.?[a-zA-Z_0-9$])*";
+    final String regex = "[a-zA-Z_$#](\\.?[a-zA-Z_0-9$#])*";
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(expression.substring(startNdx));
     if (matcher.find()) {

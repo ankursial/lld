@@ -5,6 +5,7 @@ import expression.token.operand.Operand;
 import expression.token.operand.StringOperand;
 import expression.token.operand.number.IntegerOperand;
 import expression.token.operand.variable.VariableOperand;
+import expression.token.token.Token;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,14 +31,14 @@ class VariableServiceImplTest {
     UserService userService = new UserServiceImpl(userMap);
     VariableService variableService = new VariableServiceImpl(userService);
 
-    List<Operand> variablesAndOperands = new ArrayList<>();
+    List<Token> variablesAndOperands = new ArrayList<>();
     variablesAndOperands.add(new StringOperand("ThisIsPlainStringOperand"));
     variablesAndOperands.add(new VariableOperand("age"));
     variablesAndOperands.add(new VariableOperand("lastOrderAmount"));
     variablesAndOperands.add(new VariableOperand("address#city"));
     variablesAndOperands.add(new VariableOperand("address#pincode"));
 
-    List<Operand> expectedList = new ArrayList<>();
+    List<Token> expectedList = new ArrayList<>();
     expectedList.add(new StringOperand("ThisIsPlainStringOperand"));
     expectedList.add(new IntegerOperand("5"));
     expectedList.add(new IntegerOperand("1000"));
@@ -45,7 +46,7 @@ class VariableServiceImplTest {
     expectedList.add(new IntegerOperand("110060"));
 
     //process
-    List<Operand> operandWithReplacedVariables =
+    List<Token> operandWithReplacedVariables =
         variableService.replaceVariablesWithOperands(variablesAndOperands);
 
     Assert.assertEquals(expectedList, operandWithReplacedVariables);
