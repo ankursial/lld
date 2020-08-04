@@ -1,23 +1,33 @@
-package expression.evaluator.operand.number;
+package expression.evaluator.operand;
 
 import expression.evaluator.exception.InvalidTokenException;
 import expression.evaluator.token.Token;
+import expression.evaluator.token.TokenExtractor;
 import expression.evaluator.tokenizer.TokenizerRegistry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class IntegerOperandExtractor extends NumberOperandExtractor {
+public class StringOperandExtractor implements TokenExtractor {
+
+  private static final Character START_DIGIT = '"';
+  protected static int extractorPriority = 4; //to enable true/false
 
   static {
-    TokenizerRegistry.register(new IntegerOperandExtractor(), extractorPriority);
+    TokenizerRegistry.register(new StringOperandExtractor(), extractorPriority);
+  }
+
+  @Override
+  public boolean startsWithSupportedToken(String expression, int startNdx) {
+    return START_DIGIT.equals(expression.charAt(startNdx));
   }
 
   @Override
   public Token extractToken(String expression, int startNdx) throws InvalidTokenException {
-    Pattern pattern = Pattern.compile("\\d+(?![a-zA-Z1-9])");
+    final String regex = "[^\"]+";
+    Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(expression.substring(startNdx));
     if (matcher.find()) {
-      return new IntegerOperand(matcher.group());
+      return new StringOperand(matcher.group());
     }
 
     throw new InvalidTokenException(
@@ -25,4 +35,5 @@ public class IntegerOperandExtractor extends NumberOperandExtractor {
             + ", match at index: " + startNdx
             + ", for expression:" + expression);
   }
+
 }

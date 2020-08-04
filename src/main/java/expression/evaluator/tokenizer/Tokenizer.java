@@ -26,7 +26,7 @@ public class Tokenizer {
     for (int currNdx = 0; currNdx < expression.length(); ) {
 
       // skip spaces
-      if (expression.charAt(currNdx) == ' ') {
+      if (expression.charAt(currNdx) == ' ' || expression.charAt(currNdx) == ',') {
         currNdx++;
         continue;
       }

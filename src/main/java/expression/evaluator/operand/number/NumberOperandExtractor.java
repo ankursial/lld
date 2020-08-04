@@ -5,7 +5,7 @@ import expression.evaluator.token.TokenExtractor;
 public abstract class NumberOperandExtractor implements TokenExtractor {
 
   private static final String START_DIGITS = "1234567890";
-  protected static int extractorPriority = 2;
+  protected static int extractorPriority = 3;
 
   @Override
   public boolean startsWithSupportedToken(String expression, int startNdx) {
