@@ -1,4 +1,4 @@
-package expression.token.tokenizer;
+package expression.tokenizer;
 
 import expression.myexception.InvalidTokenException;
 import expression.token.token.Token;
@@ -10,10 +10,6 @@ import java.util.NavigableSet;
 import java.util.Set;
 
 public class Tokenizer {
-
-  String[] OPERATORS = {">", ">=", "<=", "<", "==", "!=", "BETWEEN", "ALLOF", "NONEOF"};
-  String[] PARENTHESIS = {"(", ")"};
-
 
   public static List<Token> tokenize(String expression) throws InvalidTokenException {
     List<Token> finalTokenList = new ArrayList<>();
@@ -48,7 +44,6 @@ public class Tokenizer {
       //check for variables
 
       //check for numbers
-
     }
     return finalTokenList;
   }

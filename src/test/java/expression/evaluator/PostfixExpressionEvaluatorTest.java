@@ -7,7 +7,7 @@ import expression.myexception.InvalidTokenException;
 import expression.token.operand.BooleanOperand;
 import expression.token.operand.Operand;
 import expression.token.token.Token;
-import expression.token.tokenizer.Tokenizer;
+import expression.tokenizer.Tokenizer;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

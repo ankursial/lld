@@ -1,4 +1,4 @@
-package expression.token.tokenizer;
+package expression.token;
 
 import expression.myexception.InvalidTokenException;
 import expression.token.operand.BooleanOperand;
@@ -11,6 +11,7 @@ import expression.token.operator.NoneOfOperator;
 import expression.token.paenthesis.LeftParenthesis;
 import expression.token.paenthesis.RightParenthesis;
 import expression.token.token.Token;
+import expression.tokenizer.Tokenizer;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

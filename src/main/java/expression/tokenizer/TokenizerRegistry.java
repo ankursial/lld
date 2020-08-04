@@ -1,4 +1,4 @@
-package expression.token.tokenizer;
+package expression.tokenizer;
 
 import expression.token.operand.BooleanOperandExtractor;
 import expression.token.operand.StringOperandExtractor;
