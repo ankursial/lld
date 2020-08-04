@@ -16,10 +16,7 @@ public class ListOperandExtractor implements TokenExtractor {
   public boolean startsWithSupportedToken(String expression, int startNdx) {
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(expression.substring(startNdx));
-    if (matcher.find()) {
-      return true;
-    }
-    return false;
+    return matcher.find();
   }
 
   @Override

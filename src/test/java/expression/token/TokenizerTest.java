@@ -40,7 +40,7 @@ class TokenizerTest {
     tokenList.add(new IntegerOperand("5"));
     tokenList.add(new IntegerOperand("10"));
     tokenList.add(new IntegerOperand("15"));
-    ListOperand listOperand = new ListOperand("(5, 10, 15)",tokenList);
+    ListOperand listOperand = new ListOperand("(5, 10, 15)", tokenList);
     Assert.assertEquals(listOperand, result.get(9));
 
     Assert.assertEquals(new BooleanOperand("true"), result.get(10));

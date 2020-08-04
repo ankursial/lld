@@ -9,8 +9,8 @@ import java.util.List;
 
 public class VariableServiceImpl implements VariableService {
 
-  private UserService userService;
-  private OperandFactory operandFactory;
+  private final UserService userService;
+  private final OperandFactory operandFactory;
 
   public VariableServiceImpl(UserService userService) {
     this.userService = userService;

@@ -11,10 +11,10 @@ import java.util.Set;
 
 public class Tokenizer {
 
-  private static NavigableMap<Integer, Set<TokenExtractor>> tokenClassesPriorityMap =
+  private static final NavigableMap<Integer, Set<TokenExtractor>> tokenClassesPriorityMap =
       TokenizerRegistry.getTokenClassesWithPriority();
 
-  private static NavigableSet<Integer> tokenClassPrioritySet =
+  private static final NavigableSet<Integer> tokenClassPrioritySet =
       tokenClassesPriorityMap.navigableKeySet();
 
   public static List<Token> tokenize(String expression) throws InvalidTokenException {

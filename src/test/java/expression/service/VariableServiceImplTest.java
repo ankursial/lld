@@ -1,6 +1,5 @@
 package expression.service;
 
-import com.sun.source.tree.AssertTree;
 import expression.myexception.UnsupportedOperandException;
 import expression.token.operand.Operand;
 import expression.token.operand.StringOperand;

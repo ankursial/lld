@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 public class OperandFactory {
 
-  private static Map<Class, Function<Object, Operand>> converters;
+  private static final Map<Class, Function<Object, Operand>> converters;
 
   static {
     converters = new HashMap<>();
