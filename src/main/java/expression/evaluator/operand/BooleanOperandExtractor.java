@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 public class BooleanOperandExtractor implements TokenExtractor {
 
   protected static int extractorPriority = 3;
+  private final String pattern = "^(?i)(true|false)";
 
   static {
     TokenizerRegistry.register(new BooleanOperandExtractor(), extractorPriority);
@@ -17,16 +18,14 @@ public class BooleanOperandExtractor implements TokenExtractor {
 
   @Override
   public boolean startsWithSupportedToken(String expression, int startNdx) {
-    final String regex = "(?i)(true|false)";
-    Pattern pattern = Pattern.compile(regex);
+    Pattern pattern = Pattern.compile(this.pattern);
     Matcher matcher = pattern.matcher(expression.substring(startNdx));
     return matcher.find();
   }
 
   @Override
   public Token extractToken(String expression, int startNdx) throws InvalidTokenException {
-    final String regex = "(?i)(true|false)";
-    Pattern pattern = Pattern.compile(regex);
+    Pattern pattern = Pattern.compile(this.pattern);
     Matcher matcher = pattern.matcher(expression.substring(startNdx));
     if (matcher.find()) {
       return new BooleanOperand(matcher.group());
