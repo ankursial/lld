@@ -1,14 +1,14 @@
 package expression.converter;
 
-import expression.tokenizer.exception.InvalidTokenException;
-import expression.tokenizer.operand.BooleanOperand;
-import expression.tokenizer.operand.number.IntegerOperand;
-import expression.tokenizer.operand.variable.VariableOperand;
-import expression.tokenizer.operator.AndOperator;
-import expression.tokenizer.operator.LessThanOperator;
-import expression.tokenizer.paenthesis.LeftParenthesis;
-import expression.tokenizer.paenthesis.RightParenthesis;
-import expression.tokenizer.token.Token;
+import expression.myexception.InvalidTokenException;
+import expression.token.operand.BooleanOperand;
+import expression.token.operand.number.IntegerOperand;
+import expression.token.operand.variable.VariableOperand;
+import expression.token.operator.AndOperator;
+import expression.token.operator.LessThanOperator;
+import expression.token.paenthesis.LeftParenthesis;
+import expression.token.paenthesis.RightParenthesis;
+import expression.token.token.Token;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;

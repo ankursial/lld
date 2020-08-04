@@ -1,7 +1,7 @@
 package expression.converter;
 
-import expression.tokenizer.exception.InvalidTokenException;
-import expression.tokenizer.token.Token;
+import expression.myexception.InvalidTokenException;
+import expression.token.token.Token;
 import java.util.List;
 
 public interface ExpressionConverter {
