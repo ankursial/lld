@@ -2,11 +2,34 @@
 
 ## Execution
 To execute and review the functionality, one could
-1. Execute tests (with/without changes) <add href>
-2. Use Main method <add href>
-with supported attributes, operators and data types 
+1. Use Main method with supported attributes, operators and data types 
+: https://github.com/ankursial/lld/blob/expression-evaluator/src/main/java/expression/Main.java
 
-## Examples
+1. Execute tests (with/without changes)
+: https://github.com/ankursial/lld/blob/expression-evaluator/src/test/java/expression/evaluator/InfixExpressionEvaluateAndTest.java
+
+1. Execute submodule wise tests
+:  https://github.com/ankursial/lld/tree/expression-evaluator/src/test/java/expression
+
+## Examples expressions
+#### Example 1
+    Map<String, Object> addressMap = new HashMap<>();
+    addressMap.put("pincode", 110060);
+    Map<String, Object> userMap = new HashMap<>();
+    userMap.put("noOfOrders", 15);
+    userMap.put("age", 15);
+    userMap.put("address", addressMap);
+
+    String input = " 5 < noOfOrders AND address#pincode < 200000 AND 30 < age";
+
+#### Example 2
+    String input = "10 < 15 AND 10 NONEOF (10,20,30)";
+
+#### Example 3
+    String input = "(5 < 10 AND 10 < 15) AND 5 NONEOF (10,20,30)";
+
+#### Example 4
+    String input = "15 < 10";
 
 
 ## Supported user attributes
@@ -20,10 +43,19 @@ and so on where Object should be
 * a Map<String, Object>
  
 ## Supported operators
+1. LessThan: "<"
+1. NONEOF: "variable NONEOF (1,2,3)"
+1. AND: "30 < age AND variable NONEOF (1,2,3)"
  
 ## Supported data types
+1. Boolean: true/false
+1. Integer
+1. String
 
-##Assumptions
+For variables,use map. 
+For example see Main: https://github.com/ankursial/lld/blob/expression-evaluator/src/main/java/expression/Main.java
+ 
+## Assumptions
 1. Strings will be passed in double quotes, eg. "\"ABCD\""
 
 2. Groups will be flat and no nested groups would be allowed.
