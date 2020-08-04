@@ -1,7 +1,6 @@
 package expression.token.operand;
 
 import expression.token.token.Token;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,6 +29,10 @@ public class ListOperand extends Operand {
     return "ListOperand{" +
         "value='" + value + '\'' +
         '}';
+  }
+
+  public List<Token> getGroupTokens() {
+    return groupTokens;
   }
 
   @Override

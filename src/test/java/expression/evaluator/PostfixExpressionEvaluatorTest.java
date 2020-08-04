@@ -47,4 +47,25 @@ class PostfixExpressionEvaluatorTest {
     Assert.assertEquals(new BooleanOperand("true"), result);
   }
 
+  @Test
+  void evaluateTestNoneOfTrue() throws InvalidTokenException, InvalidEvaluationException {
+    String input = "(5 < 10 AND 10 < 15) AND 5 NONEOF (10,20,30)";
+    List<Token> tokenized = Tokenizer.tokenize(input);
+    ExpressionConverter expressionConverter = new InfixToPostfixConverter();
+    List<Token> postfixExpression = expressionConverter.convert(tokenized);
+    ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
+    Operand result = expressionEvaluator.evaluate(postfixExpression);
+    Assert.assertEquals(new BooleanOperand("true"), result);
+  }
+
+  @Test
+  void evaluateTestNoneOfFalse() throws InvalidTokenException, InvalidEvaluationException {
+    String input = "10 < 15 AND 10 NONEOF (10,20,30)";
+    List<Token> tokenized = Tokenizer.tokenize(input);
+    ExpressionConverter expressionConverter = new InfixToPostfixConverter();
+    List<Token> postfixExpression = expressionConverter.convert(tokenized);
+    ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
+    Operand result = expressionEvaluator.evaluate(postfixExpression);
+    Assert.assertEquals(new BooleanOperand("false"), result);
+  }
 }

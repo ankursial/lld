@@ -35,12 +35,15 @@ class TokenizerTest {
     Assert.assertEquals(new VariableOperand("variable"), result.get(6));
     Assert.assertEquals(new StringOperand("$string"), result.get(7));
     Assert.assertEquals(new NoneOfOperator(), result.get(8));
-    Assert.assertEquals(new LeftParenthesis(), result.get(9));
-    Assert.assertEquals(new IntegerOperand("5"), result.get(10));
-    Assert.assertEquals(new IntegerOperand("10"), result.get(11));
-    Assert.assertEquals(new IntegerOperand("15"), result.get(12));
-    Assert.assertEquals(new RightParenthesis(), result.get(13));
-    Assert.assertEquals(new BooleanOperand("true"), result.get(14));
+    
+    List<Token> tokenList = new ArrayList<>();
+    tokenList.add(new IntegerOperand("5"));
+    tokenList.add(new IntegerOperand("10"));
+    tokenList.add(new IntegerOperand("15"));
+    ListOperand listOperand = new ListOperand("(5, 10, 15)",tokenList);
+    Assert.assertEquals(listOperand, result.get(9));
+
+    Assert.assertEquals(new BooleanOperand("true"), result.get(10));
   }
 
   @Test

@@ -1,8 +1,14 @@
 package expression.token.operator;
 
+import expression.token.operand.BooleanOperand;
+import expression.token.operand.ListOperand;
 import expression.token.operand.Operand;
+import expression.token.operand.OperandType;
+import expression.token.operator.utils.OperandValidator;
+import expression.token.token.Token;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class NoneOfOperator extends Operator {
 
@@ -20,14 +26,24 @@ public class NoneOfOperator extends Operator {
 
   @Override
   protected boolean isSupportedOperandsInOrder(List<Operand> operands) {
-    //todo
-    return false;
+    if (!OperandValidator.isOperandType(operands.get(0), OperandType.LIST)) {
+      return false;
+    }
+
+    OperandType operandType = operands.get(1).getOperandType();
+    List<Token> groupTokens = ((ListOperand) operands.get(0)).getGroupTokens();
+
+    List<Operand> listOperands = groupTokens.stream().map(x -> (Operand) x)
+        .collect(Collectors.toList());
+
+    return OperandValidator.areAllPassedOperandType(listOperands, operandType);
   }
 
   @Override
   public Operand applyOnValidOperands(List<Operand> operands) {
-    //todo
-    return null;
+    List<Token> groupTokens = ((ListOperand) operands.get(0)).getGroupTokens();
+    Boolean retval = !groupTokens.contains(operands.get(1));
+    return new BooleanOperand(retval.toString());
   }
 
   @Override

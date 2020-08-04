@@ -16,7 +16,7 @@ public class OperandValidator {
     return true;
   }
 
-  private static boolean isOperandType(Operand operand, OperandType operandType) {
+  public static boolean isOperandType(Operand operand, OperandType operandType) {
     return operand.getOperandType().equals(operandType);
   }
 }
