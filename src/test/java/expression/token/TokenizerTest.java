@@ -2,6 +2,7 @@ package expression.token;
 
 import expression.myexception.InvalidTokenException;
 import expression.token.operand.BooleanOperand;
+import expression.token.operand.ListOperand;
 import expression.token.operand.StringOperand;
 import expression.token.operand.number.IntegerOperand;
 import expression.token.operand.variable.VariableOperand;
@@ -12,6 +13,8 @@ import expression.token.paenthesis.LeftParenthesis;
 import expression.token.paenthesis.RightParenthesis;
 import expression.token.token.Token;
 import expression.tokenizer.Tokenizer;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -38,5 +41,17 @@ class TokenizerTest {
     Assert.assertEquals(new IntegerOperand("15"), result.get(12));
     Assert.assertEquals(new RightParenthesis(), result.get(13));
     Assert.assertEquals(new BooleanOperand("true"), result.get(14));
+  }
+
+  @Test
+  void tokenizeTestWithList() throws InvalidTokenException {
+    String input = "(5, 10, \"ABCD\")";
+    List<Token> result = Tokenizer.tokenize(input);
+    List<Token> expectedGroupTokens = new ArrayList<>();
+    expectedGroupTokens.add(new IntegerOperand("5"));
+    expectedGroupTokens.add(new IntegerOperand("10"));
+    expectedGroupTokens.add(new StringOperand("ABCD"));
+    ListOperand listOperand = new ListOperand("(5, 10, \"ABCD\")", expectedGroupTokens);
+    Assert.assertEquals(Collections.singletonList(listOperand), result);
   }
 }

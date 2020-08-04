@@ -1,6 +1,7 @@
 package expression.tokenizer;
 
 import expression.token.operand.BooleanOperandExtractor;
+import expression.token.operand.ListOperandExtractor;
 import expression.token.operand.StringOperandExtractor;
 import expression.token.operand.number.IntegerOperandExtractor;
 import expression.token.operand.variable.VariableOperandExtractor;
@@ -20,6 +21,8 @@ public class TokenizerRegistry {
   private static final NavigableMap<Integer, Set<TokenExtractor>> memory = new TreeMap<>();
 
   static {
+    register(new ListOperandExtractor(), 0);
+
     register(new LeftParenthesisExtractor(), 1);
     register(new RightParenthesisExtractor(), 1);
 

@@ -11,24 +11,24 @@ import java.util.Set;
 
 public class Tokenizer {
 
+  private static NavigableMap<Integer, Set<TokenExtractor>> tokenClassesPriorityMap =
+      TokenizerRegistry.getTokenClassesWithPriority();
+
+  private static NavigableSet<Integer> tokenClassPrioritySet =
+      tokenClassesPriorityMap.navigableKeySet();
+
   public static List<Token> tokenize(String expression) throws InvalidTokenException {
     List<Token> finalTokenList = new ArrayList<>();
 
-    NavigableMap<Integer, Set<TokenExtractor>> tokenClassesPriorityMap =
-        TokenizerRegistry.getTokenClassesWithPriority();
-
-    NavigableSet<Integer> tokenClassPrioritySet = tokenClassesPriorityMap.navigableKeySet();
-
     for (int currNdx = 0; currNdx < expression.length(); ) {
 
-      // skip spaces
+      // skip spaces and commas
       if (expression.charAt(currNdx) == ' ' || expression.charAt(currNdx) == ',') {
         currNdx++;
         continue;
       }
 
-      Token token = getNextToken(expression, currNdx, tokenClassesPriorityMap,
-          tokenClassPrioritySet);
+      Token token = getNextToken(expression, currNdx);
       finalTokenList.add(token);
       currNdx += token.getStringLength();
       //check for PARENTHESIS
@@ -48,9 +48,7 @@ public class Tokenizer {
     return finalTokenList;
   }
 
-  private static Token getNextToken(String expression, int currNdx,
-      NavigableMap<Integer, Set<TokenExtractor>> tokenClassesPriorityMap,
-      NavigableSet<Integer> tokenClassPrioritySet) throws InvalidTokenException {
+  public static Token getNextToken(String expression, int currNdx) throws InvalidTokenException {
     for (Integer priority : tokenClassPrioritySet) {
       Set<TokenExtractor> tokenExtractors = tokenClassesPriorityMap.get(priority);
       for (TokenExtractor tokenExtractor : tokenExtractors) {
