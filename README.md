@@ -56,7 +56,7 @@ For variables,use map.
 For example see Main: https://github.com/ankursial/lld/blob/expression-evaluator/src/main/java/expression/Main.java
  
 ## Assumptions
-1. Strings will be passed in double quotes, eg. "\"ABCD\""
+1. Strings will be passed in double quotes, eg. "\\"ABCD\\""
 
 2. Groups will be flat and no nested groups would be allowed.
     * "($category in (1,2,3) AND  age > 5) AND height <10" is allowed
