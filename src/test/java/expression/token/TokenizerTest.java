@@ -35,7 +35,7 @@ class TokenizerTest {
     Assert.assertEquals(new VariableOperand("variable"), result.get(6));
     Assert.assertEquals(new StringOperand("$string"), result.get(7));
     Assert.assertEquals(new NoneOfOperator(), result.get(8));
-    
+
     List<Token> tokenList = new ArrayList<>();
     tokenList.add(new IntegerOperand("5"));
     tokenList.add(new IntegerOperand("10"));

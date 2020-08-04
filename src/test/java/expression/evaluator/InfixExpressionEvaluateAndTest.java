@@ -12,7 +12,7 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-class PostfixExpressionEvaluatorTest {
+class InfixExpressionEvaluateAndTest {
 
   @Test
   void evaluateTestToTrue() throws InvalidTokenException, InvalidEvaluationException {
