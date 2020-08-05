@@ -1,6 +1,8 @@
-package expression.token.paenthesis;
+package expression.tokenextractor.parenthesis;
 
-import expression.token.fixedvalue.FixedValueToken;
+import expression.token.FixedValueToken;
+import expression.token.paenthesis.Parenthesis;
+import expression.token.paenthesis.RightParenthesis;
 
 public class RightParenthesisExtractor extends ParenthesisExtractor {
 

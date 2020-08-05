@@ -3,8 +3,8 @@ package expression.token.operator;
 import expression.token.operand.BooleanOperand;
 import expression.token.operand.Operand;
 import expression.token.operand.OperandType;
-import expression.token.operator.utils.OperandToJavaTypeConverter;
-import expression.token.operator.utils.OperandValidator;
+import expression.utils.OperandToJavaTypeConverter;
+import expression.utils.OperandValidator;
 import java.util.List;
 import java.util.Objects;
 

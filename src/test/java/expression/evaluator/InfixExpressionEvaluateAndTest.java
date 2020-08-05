@@ -11,7 +11,7 @@ import expression.service.VariableService;
 import expression.service.VariableServiceImpl;
 import expression.token.operand.BooleanOperand;
 import expression.token.operand.Operand;
-import expression.token.token.Token;
+import expression.token.Token;
 import expression.tokenizer.Tokenizer;
 import java.util.HashMap;
 import java.util.List;

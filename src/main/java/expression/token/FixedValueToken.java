@@ -1,6 +1,4 @@
-package expression.token.fixedvalue;
-
-import expression.token.token.Token;
+package expression.token;
 
 public abstract class FixedValueToken implements Token {
 

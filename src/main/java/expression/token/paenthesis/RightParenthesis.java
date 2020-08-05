@@ -1,6 +1,6 @@
 package expression.token.paenthesis;
 
-import expression.token.token.TokenType;
+import expression.token.TokenType;
 import java.util.Objects;
 
 public class RightParenthesis extends Parenthesis {

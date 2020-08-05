@@ -1,7 +1,7 @@
 package expression.token.operand;
 
-import expression.token.token.Token;
-import expression.token.token.TokenType;
+import expression.token.Token;
+import expression.token.TokenType;
 
 public abstract class Operand implements Token {
 

@@ -1,14 +1,13 @@
-package expression.token.operand.variable;
+package expression.tokenextractor.operand;
 
 import expression.myexception.InvalidTokenException;
-import expression.token.token.Token;
-import expression.token.token.TokenExtractor;
+import expression.tokenextractor.TokenExtractor;
+import expression.token.operand.VariableOperand;
+import expression.token.Token;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class VariableOperandExtractor implements TokenExtractor {
-
-  protected static int extractorPriority = 3;
 
   @Override
   public boolean startsWithSupportedToken(String expression, int startNdx) {

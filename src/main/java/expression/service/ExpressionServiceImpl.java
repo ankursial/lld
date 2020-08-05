@@ -9,7 +9,7 @@ import expression.myexception.InvalidTokenException;
 import expression.myexception.UnsupportedOperandException;
 import expression.token.operand.Operand;
 import expression.token.operand.OperandType;
-import expression.token.token.Token;
+import expression.token.Token;
 import expression.tokenizer.Tokenizer;
 import java.util.List;
 import java.util.Map;

@@ -1,8 +1,8 @@
-package expression.token.operator.utils;
+package expression.utils;
 
 import expression.token.operand.BooleanOperand;
 import expression.token.operand.Operand;
-import expression.token.operand.number.NumberOperand;
+import expression.token.operand.NumberOperand;
 
 public class OperandToJavaTypeConverter {
 

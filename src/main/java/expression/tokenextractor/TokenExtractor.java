@@ -1,6 +1,7 @@
-package expression.token.token;
+package expression.tokenextractor;
 
 import expression.myexception.InvalidTokenException;
+import expression.token.Token;
 
 public interface TokenExtractor {
 

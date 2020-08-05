@@ -1,30 +1,28 @@
-package expression.token.operand;
+package expression.tokenextractor.operand;
 
 import expression.myexception.InvalidTokenException;
-import expression.token.token.Token;
-import expression.token.token.TokenExtractor;
+import expression.tokenextractor.TokenExtractor;
+import expression.token.operand.StringOperand;
+import expression.token.Token;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class BooleanOperandExtractor implements TokenExtractor {
+public class StringOperandExtractor implements TokenExtractor {
 
-  protected static int extractorPriority = 3;
-
-  private final String pattern = "^(?i)(true|false)";
+  private static final Character START_DIGIT = '"';
 
   @Override
   public boolean startsWithSupportedToken(String expression, int startNdx) {
-    Pattern pattern = Pattern.compile(this.pattern);
-    Matcher matcher = pattern.matcher(expression.substring(startNdx));
-    return matcher.find();
+    return START_DIGIT.equals(expression.charAt(startNdx));
   }
 
   @Override
   public Token extractToken(String expression, int startNdx) throws InvalidTokenException {
-    Pattern pattern = Pattern.compile(this.pattern);
+    final String regex = "[^\"]+";
+    Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(expression.substring(startNdx));
     if (matcher.find()) {
-      return new BooleanOperand(matcher.group());
+      return new StringOperand(matcher.group());
     }
 
     throw new InvalidTokenException(

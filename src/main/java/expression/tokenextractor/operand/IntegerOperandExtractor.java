@@ -1,7 +1,8 @@
-package expression.token.operand.number;
+package expression.tokenextractor.operand;
 
 import expression.myexception.InvalidTokenException;
-import expression.token.token.Token;
+import expression.token.operand.IntegerOperand;
+import expression.token.Token;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

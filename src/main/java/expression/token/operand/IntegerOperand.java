@@ -1,4 +1,4 @@
-package expression.token.operand.number;
+package expression.token.operand;
 
 import java.util.Objects;
 

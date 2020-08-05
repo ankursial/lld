@@ -1,4 +1,4 @@
-package expression.token.operand.number;
+package expression.token.operand;
 
 import expression.token.operand.Operand;
 import expression.token.operand.OperandType;

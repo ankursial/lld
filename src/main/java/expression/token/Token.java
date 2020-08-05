@@ -1,4 +1,4 @@
-package expression.token.token;
+package expression.token;
 
 public interface Token {
 

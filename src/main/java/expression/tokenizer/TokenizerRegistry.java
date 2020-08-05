@@ -1,16 +1,16 @@
 package expression.tokenizer;
 
-import expression.token.operand.BooleanOperandExtractor;
-import expression.token.operand.ListOperandExtractor;
-import expression.token.operand.StringOperandExtractor;
-import expression.token.operand.number.IntegerOperandExtractor;
-import expression.token.operand.variable.VariableOperandExtractor;
-import expression.token.operator.AndOperatorExtractor;
-import expression.token.operator.LessThanOperatorExtractor;
-import expression.token.operator.NoneOfOperatorExtractor;
-import expression.token.paenthesis.LeftParenthesisExtractor;
-import expression.token.paenthesis.RightParenthesisExtractor;
-import expression.token.token.TokenExtractor;
+import expression.tokenextractor.operand.BooleanOperandExtractor;
+import expression.tokenextractor.operand.ListOperandExtractor;
+import expression.tokenextractor.operand.StringOperandExtractor;
+import expression.tokenextractor.operand.IntegerOperandExtractor;
+import expression.tokenextractor.operand.VariableOperandExtractor;
+import expression.tokenextractor.operator.AndOperatorExtractor;
+import expression.tokenextractor.operator.LessThanOperatorExtractor;
+import expression.tokenextractor.operator.NoneOfOperatorExtractor;
+import expression.tokenextractor.parenthesis.LeftParenthesisExtractor;
+import expression.tokenextractor.parenthesis.RightParenthesisExtractor;
+import expression.tokenextractor.TokenExtractor;
 import java.util.HashSet;
 import java.util.NavigableMap;
 import java.util.Set;

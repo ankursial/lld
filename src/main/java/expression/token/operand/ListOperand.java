@@ -1,6 +1,6 @@
 package expression.token.operand;
 
-import expression.token.token.Token;
+import expression.token.Token;
 import java.util.List;
 import java.util.Objects;
 

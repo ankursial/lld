@@ -4,9 +4,9 @@ import expression.factory.OperandFactory;
 import expression.myexception.UnsupportedOperandException;
 import expression.token.operand.Operand;
 import expression.token.operand.OperandType;
-import expression.token.operand.variable.VariableOperand;
-import expression.token.token.Token;
-import expression.token.token.TokenType;
+import expression.token.operand.VariableOperand;
+import expression.token.Token;
+import expression.token.TokenType;
 import java.util.ArrayList;
 import java.util.List;
 

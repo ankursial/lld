@@ -1,9 +1,9 @@
 package expression.token.operator;
 
 import expression.myexception.InvalidEvaluationException;
-import expression.token.fixedvalue.FixedValueToken;
+import expression.token.FixedValueToken;
 import expression.token.operand.Operand;
-import expression.token.token.TokenType;
+import expression.token.TokenType;
 import java.util.List;
 
 public abstract class Operator extends FixedValueToken {

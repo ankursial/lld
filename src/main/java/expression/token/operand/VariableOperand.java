@@ -1,7 +1,5 @@
-package expression.token.operand.variable;
+package expression.token.operand;
 
-import expression.token.operand.Operand;
-import expression.token.operand.OperandType;
 import java.util.Objects;
 
 public class VariableOperand extends Operand {

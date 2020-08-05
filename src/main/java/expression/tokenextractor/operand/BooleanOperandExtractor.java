@@ -1,31 +1,29 @@
-package expression.token.operand;
+package expression.tokenextractor.operand;
 
 import expression.myexception.InvalidTokenException;
-import expression.token.token.Token;
-import expression.token.token.TokenExtractor;
-import expression.tokenizer.Tokenizer;
-import java.util.List;
+import expression.tokenextractor.TokenExtractor;
+import expression.token.operand.BooleanOperand;
+import expression.token.Token;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ListOperandExtractor implements TokenExtractor {
+public class BooleanOperandExtractor implements TokenExtractor {
 
-  final String regex = "^\\( *((?:(?:[\"0-9A-Za-z]+)* *, *)* *(?:[\"0-9A-Za-z]+)) *\\)";
+  private final String pattern = "^(?i)(true|false)";
 
   @Override
   public boolean startsWithSupportedToken(String expression, int startNdx) {
-    Pattern pattern = Pattern.compile(regex);
+    Pattern pattern = Pattern.compile(this.pattern);
     Matcher matcher = pattern.matcher(expression.substring(startNdx));
     return matcher.find();
   }
 
   @Override
   public Token extractToken(String expression, int startNdx) throws InvalidTokenException {
-    Pattern pattern = Pattern.compile(regex);
+    Pattern pattern = Pattern.compile(this.pattern);
     Matcher matcher = pattern.matcher(expression.substring(startNdx));
     if (matcher.find()) {
-      List<Token> groupTokens = Tokenizer.tokenize(matcher.group(1));
-      return new ListOperand(matcher.group(), groupTokens);
+      return new BooleanOperand(matcher.group());
     }
 
     throw new InvalidTokenException(

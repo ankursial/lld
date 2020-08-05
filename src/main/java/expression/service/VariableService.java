@@ -2,8 +2,8 @@ package expression.service;
 
 import expression.myexception.UnsupportedOperandException;
 import expression.token.operand.Operand;
-import expression.token.operand.variable.VariableOperand;
-import expression.token.token.Token;
+import expression.token.operand.VariableOperand;
+import expression.token.Token;
 import java.util.List;
 
 public interface VariableService {

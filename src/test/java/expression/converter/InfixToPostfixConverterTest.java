@@ -2,13 +2,13 @@ package expression.converter;
 
 import expression.myexception.InvalidTokenException;
 import expression.token.operand.BooleanOperand;
-import expression.token.operand.number.IntegerOperand;
-import expression.token.operand.variable.VariableOperand;
+import expression.token.operand.IntegerOperand;
+import expression.token.operand.VariableOperand;
 import expression.token.operator.AndOperator;
 import expression.token.operator.LessThanOperator;
 import expression.token.paenthesis.LeftParenthesis;
 import expression.token.paenthesis.RightParenthesis;
-import expression.token.token.Token;
+import expression.token.Token;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;

@@ -2,8 +2,8 @@ package expression.converter;
 
 import expression.myexception.InvalidTokenException;
 import expression.token.operator.Operator;
-import expression.token.token.Token;
-import expression.token.token.TokenType;
+import expression.token.Token;
+import expression.token.TokenType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;

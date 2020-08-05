@@ -1,8 +1,8 @@
 package expression.tokenizer;
 
 import expression.myexception.InvalidTokenException;
-import expression.token.token.Token;
-import expression.token.token.TokenExtractor;
+import expression.token.Token;
+import expression.tokenextractor.TokenExtractor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NavigableMap;

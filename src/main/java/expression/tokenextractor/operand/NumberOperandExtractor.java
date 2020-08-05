@@ -1,11 +1,10 @@
-package expression.token.operand.number;
+package expression.tokenextractor.operand;
 
-import expression.token.token.TokenExtractor;
+import expression.tokenextractor.TokenExtractor;
 
 public abstract class NumberOperandExtractor implements TokenExtractor {
 
   private static final String START_DIGITS = "1234567890";
-  protected static int extractorPriority = 3;
 
   @Override
   public boolean startsWithSupportedToken(String expression, int startNdx) {

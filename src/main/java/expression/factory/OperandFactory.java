@@ -4,7 +4,7 @@ import expression.myexception.UnsupportedOperandException;
 import expression.token.operand.BooleanOperand;
 import expression.token.operand.Operand;
 import expression.token.operand.StringOperand;
-import expression.token.operand.number.IntegerOperand;
+import expression.token.operand.IntegerOperand;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;

@@ -1,6 +1,7 @@
-package expression.token.operator;
+package expression.tokenextractor.operator;
 
-import expression.token.fixedvalue.FixedValueToken;
+import expression.token.FixedValueToken;
+import expression.token.operator.AndOperator;
 
 public class AndOperatorExtractor extends OperatorExtractor {
 

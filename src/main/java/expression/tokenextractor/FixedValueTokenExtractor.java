@@ -1,7 +1,7 @@
-package expression.token.fixedvalue;
+package expression.tokenextractor;
 
-import expression.token.token.Token;
-import expression.token.token.TokenExtractor;
+import expression.token.FixedValueToken;
+import expression.token.Token;
 
 public abstract class FixedValueTokenExtractor implements TokenExtractor {
 
