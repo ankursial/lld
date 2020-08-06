@@ -1,7 +1,7 @@
 package expression.converter;
 
 import expression.myexception.InvalidTokenException;
-import expression.token.operator.Operator;
+import expression.token.operator.AbstractOperator;
 import expression.token.Token;
 import expression.token.TokenType;
 import java.util.ArrayList;
@@ -42,10 +42,10 @@ public class InfixToPostfixConverter implements ExpressionConverter {
             continue;
           }
 
-          Operator curr_operator = (Operator) token;
+          AbstractOperator curr_operator = (AbstractOperator) token;
           while (!operatorStack.isEmpty()
               && !isLeftParenthesisAtTop(operatorStack)
-              && isPrecedenceHigher(curr_operator, (Operator) operatorStack.peek())) {
+              && isPrecedenceHigher(curr_operator, (AbstractOperator) operatorStack.peek())) {
             postFixResult.add(operatorStack.pop());
           }
           operatorStack.push(curr_operator);
@@ -64,7 +64,8 @@ public class InfixToPostfixConverter implements ExpressionConverter {
     return postFixResult;
   }
 
-  private boolean isPrecedenceHigher(Operator curr_operator, Operator stackTopOperator) {
+  private boolean isPrecedenceHigher(
+      AbstractOperator curr_operator, AbstractOperator stackTopOperator) {
     return curr_operator.getPrecedence() <= stackTopOperator.getPrecedence();
   }
 

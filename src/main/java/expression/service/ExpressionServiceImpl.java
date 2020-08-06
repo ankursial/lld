@@ -7,7 +7,7 @@ import expression.evaluator.PostfixExpressionEvaluator;
 import expression.myexception.InvalidEvaluationException;
 import expression.myexception.InvalidTokenException;
 import expression.myexception.UnsupportedOperandException;
-import expression.token.operand.Operand;
+import expression.token.operand.AbstractOperand;
 import expression.token.operand.OperandType;
 import expression.token.Token;
 import expression.tokenizer.Tokenizer;
@@ -25,7 +25,7 @@ public class ExpressionServiceImpl implements ExpressionService {
   private boolean evaluateBooleanResultExpression(String conditionalExpression,
       Map<String, Object> user)
       throws InvalidEvaluationException, InvalidTokenException, UnsupportedOperandException {
-    Operand result = evaluateExpression(conditionalExpression, user);
+    AbstractOperand result = evaluateExpression(conditionalExpression, user);
     if (!result.getOperandType().equals(OperandType.BOOLEAN)) {
       throw new InvalidEvaluationException("Evaluation did not result into boolean output");
     }
@@ -33,7 +33,7 @@ public class ExpressionServiceImpl implements ExpressionService {
     return Boolean.parseBoolean(result.toString());
   }
 
-  private Operand evaluateExpression(String expression, Map<String, Object> userMap)
+  private AbstractOperand evaluateExpression(String expression, Map<String, Object> userMap)
       throws InvalidTokenException, UnsupportedOperandException, InvalidEvaluationException {
     List<Token> tokenized = Tokenizer.tokenize(expression);
 

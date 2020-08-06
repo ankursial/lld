@@ -2,21 +2,21 @@ package expression.token.operator;
 
 import expression.myexception.InvalidEvaluationException;
 import expression.token.FixedValueToken;
-import expression.token.operand.Operand;
+import expression.token.operand.AbstractOperand;
 import expression.token.TokenType;
 import java.util.List;
 
-public abstract class Operator extends FixedValueToken {
+public abstract class AbstractOperator extends FixedValueToken {
 
   public abstract int getPrecedence();
 
   public abstract int getRequiredOperandCount();
 
-  protected abstract boolean isSupportedOperandsInOrder(List<Operand> operands);
+  protected abstract boolean isSupportedOperandsInOrder(List<AbstractOperand> operands);
 
-  public abstract Operand applyOnValidOperands(List<Operand> operands);
+  public abstract AbstractOperand applyOnValidOperands(List<AbstractOperand> operands);
 
-  public Operand apply(List<Operand> operands) throws InvalidEvaluationException {
+  public AbstractOperand apply(List<AbstractOperand> operands) throws InvalidEvaluationException {
     if (isSupportedOperandsInOrder(operands)) {
       return applyOnValidOperands(operands);
     }

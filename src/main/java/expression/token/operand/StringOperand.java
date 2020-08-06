@@ -2,7 +2,7 @@ package expression.token.operand;
 
 import java.util.Objects;
 
-public class StringOperand extends Operand {
+public class StringOperand extends AbstractOperand {
 
   String value;
 

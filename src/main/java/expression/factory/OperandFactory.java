@@ -2,7 +2,7 @@ package expression.factory;
 
 import expression.myexception.UnsupportedOperandException;
 import expression.token.operand.BooleanOperand;
-import expression.token.operand.Operand;
+import expression.token.operand.AbstractOperand;
 import expression.token.operand.StringOperand;
 import expression.token.operand.IntegerOperand;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.function.Function;
 
 public class OperandFactory {
 
-  private static final Map<Class, Function<Object, Operand>> converters;
+  private static final Map<Class, Function<Object, AbstractOperand>> converters;
 
   static {
     converters = new HashMap<>();
@@ -20,7 +20,7 @@ public class OperandFactory {
     converters.put(Boolean.class, object -> new BooleanOperand(object.toString()));
   }
 
-  public Operand getOperand(Object object) throws UnsupportedOperandException {
+  public AbstractOperand getOperand(Object object) throws UnsupportedOperandException {
 
     if (converters.containsKey(object.getClass())) {
       return converters.get(object.getClass()).apply(object);

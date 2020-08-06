@@ -1,14 +1,14 @@
 package expression.token.operator;
 
+import expression.token.operand.AbstractOperand;
 import expression.token.operand.BooleanOperand;
-import expression.token.operand.Operand;
 import expression.token.operand.OperandType;
 import expression.utils.OperandToJavaTypeConverter;
 import expression.utils.OperandValidator;
 import java.util.List;
 import java.util.Objects;
 
-public class LessThanOperator extends Operator {
+public class LessThanOperator extends AbstractOperator {
 
   private final String value = "<";
 
@@ -23,12 +23,12 @@ public class LessThanOperator extends Operator {
   }
 
   @Override
-  protected boolean isSupportedOperandsInOrder(List<Operand> operands) {
+  protected boolean isSupportedOperandsInOrder(List<AbstractOperand> operands) {
     return OperandValidator.areAllPassedOperandType(operands, OperandType.NUMBER);
   }
 
   @Override
-  public Operand applyOnValidOperands(List<Operand> operands) {
+  public AbstractOperand applyOnValidOperands(List<AbstractOperand> operands) {
     Double operandB = OperandToJavaTypeConverter.getDouble(operands.get(0));
     Double operandA = OperandToJavaTypeConverter.getDouble(operands.get(1));
 

@@ -3,7 +3,7 @@ package expression.token.operand;
 import expression.token.Token;
 import expression.token.TokenType;
 
-public abstract class Operand implements Token {
+public abstract class AbstractOperand implements Token {
 
   @Override
   public TokenType getTokenType() {

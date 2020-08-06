@@ -1,8 +1,8 @@
 package expression.token.operator;
 
+import expression.token.operand.AbstractOperand;
 import expression.token.operand.BooleanOperand;
 import expression.token.operand.ListOperand;
-import expression.token.operand.Operand;
 import expression.token.operand.OperandType;
 import expression.utils.OperandValidator;
 import expression.token.Token;
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class NoneOfOperator extends Operator {
+public class NoneOfOperator extends AbstractOperator {
 
   private final String value = "NONEOF";
 
@@ -25,7 +25,7 @@ public class NoneOfOperator extends Operator {
   }
 
   @Override
-  protected boolean isSupportedOperandsInOrder(List<Operand> operands) {
+  protected boolean isSupportedOperandsInOrder(List<AbstractOperand> operands) {
     if (!OperandValidator.isOperandType(operands.get(0), OperandType.LIST)) {
       return false;
     }
@@ -33,14 +33,14 @@ public class NoneOfOperator extends Operator {
     OperandType operandType = operands.get(1).getOperandType();
     List<Token> groupTokens = ((ListOperand) operands.get(0)).getGroupTokens();
 
-    List<Operand> listOperands = groupTokens.stream().map(x -> (Operand) x)
+    List<AbstractOperand> listOperands = groupTokens.stream().map(x -> (AbstractOperand) x)
         .collect(Collectors.toList());
 
     return OperandValidator.areAllPassedOperandType(listOperands, operandType);
   }
 
   @Override
-  public Operand applyOnValidOperands(List<Operand> operands) {
+  public AbstractOperand applyOnValidOperands(List<AbstractOperand> operands) {
     List<Token> groupTokens = ((ListOperand) operands.get(0)).getGroupTokens();
     Boolean retval = !groupTokens.contains(operands.get(1));
     return new BooleanOperand(retval.toString());

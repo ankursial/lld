@@ -3,7 +3,7 @@ package expression.tokenextractor;
 import expression.token.FixedValueToken;
 import expression.token.Token;
 
-public abstract class FixedValueTokenExtractor implements TokenExtractor {
+public abstract class AbstractFixedValueTokenExtractor implements TokenExtractor {
 
   protected abstract FixedValueToken getToken();
 

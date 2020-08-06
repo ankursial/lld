@@ -2,7 +2,7 @@ package expression.token.operand;
 
 import java.util.Objects;
 
-public class BooleanOperand extends Operand {
+public class BooleanOperand extends AbstractOperand {
 
   //todo replace with factory
 

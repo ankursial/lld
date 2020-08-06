@@ -9,8 +9,8 @@ import expression.service.UserService;
 import expression.service.UserServiceImpl;
 import expression.service.VariableService;
 import expression.service.VariableServiceImpl;
+import expression.token.operand.AbstractOperand;
 import expression.token.operand.BooleanOperand;
-import expression.token.operand.Operand;
 import expression.token.Token;
 import expression.tokenizer.Tokenizer;
 import java.util.HashMap;
@@ -28,7 +28,7 @@ class InfixExpressionEvaluateAndTest {
     ExpressionConverter expressionConverter = new InfixToPostfixConverter();
     List<Token> postfixExpression = expressionConverter.convert(tokenized);
     ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
-    Operand result = expressionEvaluator.evaluate(postfixExpression);
+    AbstractOperand result = expressionEvaluator.evaluate(postfixExpression);
     Assert.assertEquals(new BooleanOperand("true"), result);
   }
 
@@ -39,7 +39,7 @@ class InfixExpressionEvaluateAndTest {
     ExpressionConverter expressionConverter = new InfixToPostfixConverter();
     List<Token> postfixExpression = expressionConverter.convert(tokenized);
     ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
-    Operand result = expressionEvaluator.evaluate(postfixExpression);
+    AbstractOperand result = expressionEvaluator.evaluate(postfixExpression);
     Assert.assertEquals(new BooleanOperand("false"), result);
   }
 
@@ -50,7 +50,7 @@ class InfixExpressionEvaluateAndTest {
     ExpressionConverter expressionConverter = new InfixToPostfixConverter();
     List<Token> postfixExpression = expressionConverter.convert(tokenized);
     ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
-    Operand result = expressionEvaluator.evaluate(postfixExpression);
+    AbstractOperand result = expressionEvaluator.evaluate(postfixExpression);
     Assert.assertEquals(new BooleanOperand("true"), result);
   }
 
@@ -61,7 +61,7 @@ class InfixExpressionEvaluateAndTest {
     ExpressionConverter expressionConverter = new InfixToPostfixConverter();
     List<Token> postfixExpression = expressionConverter.convert(tokenized);
     ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
-    Operand result = expressionEvaluator.evaluate(postfixExpression);
+    AbstractOperand result = expressionEvaluator.evaluate(postfixExpression);
     Assert.assertEquals(new BooleanOperand("true"), result);
   }
 
@@ -72,7 +72,7 @@ class InfixExpressionEvaluateAndTest {
     ExpressionConverter expressionConverter = new InfixToPostfixConverter();
     List<Token> postfixExpression = expressionConverter.convert(tokenized);
     ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
-    Operand result = expressionEvaluator.evaluate(postfixExpression);
+    AbstractOperand result = expressionEvaluator.evaluate(postfixExpression);
     Assert.assertEquals(new BooleanOperand("false"), result);
   }
 
@@ -99,7 +99,7 @@ class InfixExpressionEvaluateAndTest {
         variableService.replaceVariablesWithOperands(postfixExpression);
 
     ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
-    Operand result = expressionEvaluator.evaluate(expressionWithoutVariables);
+    AbstractOperand result = expressionEvaluator.evaluate(expressionWithoutVariables);
     Assert.assertEquals(new BooleanOperand("true"), result);
   }
 
@@ -126,7 +126,7 @@ class InfixExpressionEvaluateAndTest {
         variableService.replaceVariablesWithOperands(postfixExpression);
 
     ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
-    Operand result = expressionEvaluator.evaluate(expressionWithoutVariables);
+    AbstractOperand result = expressionEvaluator.evaluate(expressionWithoutVariables);
     Assert.assertEquals(new BooleanOperand("false"), result);
   }
 }

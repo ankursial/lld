@@ -1,12 +1,12 @@
 package expression.tokenextractor.parenthesis;
 
 import expression.token.FixedValueToken;
-import expression.token.paenthesis.Parenthesis;
+import expression.token.paenthesis.AbstractParenthesis;
 import expression.token.paenthesis.RightParenthesis;
 
-public class RightParenthesisExtractor extends ParenthesisExtractor {
+public class RightParenthesisExtractor extends AbstractParenthesisExtractor {
 
-  private static final Parenthesis rightParenthesisInstance = new RightParenthesis();
+  private static final AbstractParenthesis rightParenthesisInstance = new RightParenthesis();
 
   @Override
   protected FixedValueToken getToken() {

@@ -1,14 +1,14 @@
 package expression.token.operator;
 
+import expression.token.operand.AbstractOperand;
 import expression.token.operand.BooleanOperand;
-import expression.token.operand.Operand;
 import expression.token.operand.OperandType;
 import expression.utils.OperandToJavaTypeConverter;
 import expression.utils.OperandValidator;
 import java.util.List;
 import java.util.Objects;
 
-public class AndOperator extends Operator {
+public class AndOperator extends AbstractOperator {
 
   private final String value = "AND";
 
@@ -23,12 +23,12 @@ public class AndOperator extends Operator {
   }
 
   @Override
-  protected boolean isSupportedOperandsInOrder(List<Operand> operands) {
+  protected boolean isSupportedOperandsInOrder(List<AbstractOperand> operands) {
     return OperandValidator.areAllPassedOperandType(operands, OperandType.BOOLEAN);
   }
 
   @Override
-  public Operand applyOnValidOperands(List<Operand> operands) {
+  public AbstractOperand applyOnValidOperands(List<AbstractOperand> operands) {
     Boolean operandB = OperandToJavaTypeConverter.getBoolean(operands.get(0));
     Boolean operandA = OperandToJavaTypeConverter.getBoolean(operands.get(1));
     Boolean result = operandA && operandB;

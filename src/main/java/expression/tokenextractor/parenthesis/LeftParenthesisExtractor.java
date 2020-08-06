@@ -3,7 +3,7 @@ package expression.tokenextractor.parenthesis;
 import expression.token.FixedValueToken;
 import expression.token.paenthesis.LeftParenthesis;
 
-public class LeftParenthesisExtractor extends ParenthesisExtractor {
+public class LeftParenthesisExtractor extends AbstractParenthesisExtractor {
 
   private static final LeftParenthesis leftParenthesisInstance = new LeftParenthesis();
 

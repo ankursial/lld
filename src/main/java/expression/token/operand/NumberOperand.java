@@ -1,9 +1,6 @@
 package expression.token.operand;
 
-import expression.token.operand.Operand;
-import expression.token.operand.OperandType;
-
-public abstract class NumberOperand extends Operand {
+public abstract class NumberOperand extends AbstractOperand {
 
   public abstract String getStringValue();
 

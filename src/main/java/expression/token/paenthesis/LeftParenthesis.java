@@ -3,7 +3,7 @@ package expression.token.paenthesis;
 import expression.token.TokenType;
 import java.util.Objects;
 
-public class LeftParenthesis extends Parenthesis {
+public class LeftParenthesis extends AbstractParenthesis {
 
   private final String value = "(";
 

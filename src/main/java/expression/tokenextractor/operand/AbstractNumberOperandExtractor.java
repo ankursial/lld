@@ -2,7 +2,7 @@ package expression.tokenextractor.operand;
 
 import expression.tokenextractor.TokenExtractor;
 
-public abstract class NumberOperandExtractor implements TokenExtractor {
+public abstract class AbstractNumberOperandExtractor implements TokenExtractor {
 
   private static final String START_DIGITS = "1234567890";
 

@@ -2,7 +2,7 @@ package expression.service;
 
 import expression.factory.OperandFactory;
 import expression.myexception.UnsupportedOperandException;
-import expression.token.operand.Operand;
+import expression.token.operand.AbstractOperand;
 import expression.token.operand.OperandType;
 import expression.token.operand.VariableOperand;
 import expression.token.Token;
@@ -21,7 +21,7 @@ public class VariableServiceImpl implements VariableService {
   }
 
   @Override
-  public Operand convertVariable(VariableOperand key) throws UnsupportedOperandException {
+  public AbstractOperand convertVariable(VariableOperand key) throws UnsupportedOperandException {
     Object object = userService.getJavaObject(key.toString());
     return operandFactory.getOperand(object);
   }
@@ -42,7 +42,7 @@ public class VariableServiceImpl implements VariableService {
 
   private boolean isVariable(Token token) {
     if (token.getTokenType().equals(TokenType.OPERAND)) {
-      Operand operand = (Operand) token;
+      AbstractOperand operand = (AbstractOperand) token;
       return operand.getOperandType().equals(OperandType.VARIABLE);
     }
 

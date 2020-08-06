@@ -6,7 +6,7 @@ import expression.token.Token;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class IntegerOperandExtractor extends NumberOperandExtractor {
+public class IntegerOperandExtractor extends AbstractNumberOperandExtractor {
 
   @Override
   public Token extractToken(String expression, int startNdx) throws InvalidTokenException {

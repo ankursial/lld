@@ -4,7 +4,7 @@ import expression.token.Token;
 import java.util.List;
 import java.util.Objects;
 
-public class ListOperand extends Operand {
+public class ListOperand extends AbstractOperand {
 
   String value;
   List<Token> groupTokens;
