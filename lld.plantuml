@@ -1,0 +1,91 @@
+@startuml
+
+title __LLD's Class Diagram 3: Tokenizers__\n
+
+'  interface expression.converter.ExpressionConverter
+'  interface expression.evaluator.ExpressionEvaluator
+'  interface expression.service.ExpressionService
+'  interface expression.service.UserService
+'  interface expression.service.VariableService
+'  interface expression.tokenizer.Tokenizer
+'  interface expression.token.Token
+'  interface expression.tokenextractor.TokenExtractor
+'
+'  expression.converter.InfixToPostfixConverter .up.|> expression.converter.ExpressionConverter
+'  expression.evaluator.PostfixExpressionEvaluator .up.|> expression.evaluator.ExpressionEvaluator
+'  expression.runner.Main o-- expression.service.ExpressionService : expressionService
+'  expression.service.ExpressionServiceImpl .up.|> expression.service.ExpressionService
+'  expression.service.ExpressionServiceImpl o-- expression.converter.ExpressionConverter : expressionConverter
+'  expression.service.ExpressionServiceImpl o-- expression.evaluator.ExpressionEvaluator : expressionEvaluator
+'  expression.service.ExpressionServiceImpl o-- expression.tokenizer.Tokenizer : tokenizer
+'  expression.service.ExpressionServiceImpl o-- expression.service.VariableService : variableService
+'  expression.service.UserServiceImpl .up.|> expression.service.UserService
+'  expression.service.VariableServiceImpl .up.|> expression.service.VariableService
+'  expression.service.VariableServiceImpl o-- expression.factory.OperandFactory : operandFactory
+'  expression.service.VariableServiceImpl o-- expression.service.UserService : userService
+'    expression.tokenizer.Tokenizer --> expression.token.Token : generates
+'    expression.tokenizer.Tokenizer --> expression.tokenextractor.TokenExtractor : uses
+
+'    interface expression.tokenizer.Tokenizer
+'    interface expression.token.Token
+'    abstract expression.token.operand.AbstractOperand
+'    abstract expression.token.operand.NumberOperand
+'    abstract expression.token.operator.AbstractOperator
+'    abstract expression.token.parenthesis.AbstractParenthesis
+'
+'    expression.tokenizer.Tokenizer --> expression.token.Token : generates
+'  expression.token.FixedValueToken .up.|> expression.token.Token
+'  expression.token.operand.AbstractOperand .up.|> expression.token.Token
+'  expression.token.operand.BooleanOperand -up-|> expression.token.operand.AbstractOperand
+'  expression.token.operand.IntegerOperand -up-|> expression.token.operand.NumberOperand
+'  expression.token.operand.ListOperand -up-|> expression.token.operand.AbstractOperand
+'  expression.token.operand.NumberOperand -up-|> expression.token.operand.AbstractOperand
+'  expression.token.operand.StringOperand -up-|> expression.token.operand.AbstractOperand
+'  expression.token.operand.VariableOperand -up-|> expression.token.operand.AbstractOperand
+'  expression.token.operator.AbstractOperator -up-|> expression.token.FixedValueToken
+'  expression.token.operator.AndOperator -up-|> expression.token.operator.AbstractOperator
+'  expression.token.operator.LessThanOperator -up-|> expression.token.operator.AbstractOperator
+'  expression.token.operator.NoneOfOperator -up-|> expression.token.operator.AbstractOperator
+'  expression.token.parenthesis.AbstractParenthesis -up-|> expression.token.FixedValueToken
+'  expression.token.parenthesis.LeftParenthesis -up-|> expression.token.parenthesis.AbstractParenthesis
+'  expression.token.parenthesis.RightParenthesis -up-|> expression.token.parenthesis.AbstractParenthesis
+
+
+  interface expression.tokenizer.Tokenizer
+  interface expression.tokenextractor.TokenExtractor
+  expression.tokenizer.Tokenizer --> expression.tokenextractor.TokenExtractor : uses
+
+
+  abstract expression.tokenextractor.AbstractFixedValueTokenExtractor
+  abstract expression.tokenextractor.operand.AbstractNumberOperandExtractor
+  abstract expression.tokenextractor.operator.AbstractOperatorExtractor
+  abstract expression.tokenextractor.parenthesis.AbstractParenthesisExtractor
+   expression.tokenextractor.operator.AbstractOperatorExtractor .up[hidden].  expression.tokenextractor.operand.IntegerOperandExtractor
+   expression.tokenextractor.parenthesis.AbstractParenthesisExtractor .up[hidden].  expression.tokenextractor.operand.IntegerOperandExtractor
+
+
+  expression.tokenextractor.AbstractFixedValueTokenExtractor .up.|> expression.tokenextractor.TokenExtractor
+  expression.tokenextractor.operand.AbstractNumberOperandExtractor .up.|> expression.tokenextractor.TokenExtractor
+  expression.tokenextractor.operand.BooleanOperandExtractor .up.|> expression.tokenextractor.TokenExtractor
+  expression.tokenextractor.operand.IntegerOperandExtractor -up-|> expression.tokenextractor.operand.AbstractNumberOperandExtractor
+  expression.tokenextractor.operand.ListOperandExtractor .up.|> expression.tokenextractor.TokenExtractor
+  expression.tokenextractor.operand.StringOperandExtractor .up.|> expression.tokenextractor.TokenExtractor
+  expression.tokenextractor.operand.VariableOperandExtractor .up.|> expression.tokenextractor.TokenExtractor
+  expression.tokenextractor.operator.AbstractOperatorExtractor -up-|> expression.tokenextractor.AbstractFixedValueTokenExtractor
+  expression.tokenextractor.operator.AndOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
+  expression.tokenextractor.operator.LessThanOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
+  expression.tokenextractor.operator.NoneOfOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
+  expression.tokenextractor.parenthesis.AbstractParenthesisExtractor -up-|> expression.tokenextractor.AbstractFixedValueTokenExtractor
+  expression.tokenextractor.parenthesis.LeftParenthesisExtractor -up-|> expression.tokenextractor.parenthesis.AbstractParenthesisExtractor
+  expression.tokenextractor.parenthesis.RightParenthesisExtractor -up-|> expression.tokenextractor.parenthesis.AbstractParenthesisExtractor
+'  expression.tokenizer.TokenizerImpl .up.|> expression.tokenizer.Tokenizer
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

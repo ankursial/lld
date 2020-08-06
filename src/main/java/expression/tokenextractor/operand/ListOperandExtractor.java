@@ -4,7 +4,7 @@ import expression.myexception.InvalidTokenException;
 import expression.tokenextractor.TokenExtractor;
 import expression.token.operand.ListOperand;
 import expression.token.Token;
-import expression.tokenizer.Tokenizer;
+import expression.tokenizer.TokenizerImpl;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,7 +25,8 @@ public class ListOperandExtractor implements TokenExtractor {
     Pattern pattern = Pattern.compile(regex);
     Matcher matcher = pattern.matcher(expression.substring(startNdx));
     if (matcher.find()) {
-      List<Token> groupTokens = Tokenizer.tokenize(matcher.group(1));
+      TokenizerImpl tokenizer = new TokenizerImpl();
+      List<Token> groupTokens = tokenizer.tokenize(matcher.group(1));
       return new ListOperand(matcher.group(), groupTokens);
     }
 

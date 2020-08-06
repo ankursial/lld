@@ -1,4 +1,4 @@
-package expression.token.paenthesis;
+package expression.token.parenthesis;
 
 import expression.token.TokenType;
 import java.util.Objects;

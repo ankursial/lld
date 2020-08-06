@@ -6,7 +6,14 @@ public class UserServiceImpl implements UserService {
 
   Map<String, Object> userMap;
 
+  public UserServiceImpl() {
+  }
+
   public UserServiceImpl(Map<String, Object> userMap) {
+    this.userMap = userMap;
+  }
+
+  public void setUser(Map<String, Object> userMap) {
     this.userMap = userMap;
   }
 

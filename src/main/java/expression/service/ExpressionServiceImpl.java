@@ -11,10 +11,16 @@ import expression.token.operand.AbstractOperand;
 import expression.token.operand.OperandType;
 import expression.token.Token;
 import expression.tokenizer.Tokenizer;
+import expression.tokenizer.TokenizerImpl;
 import java.util.List;
 import java.util.Map;
 
 public class ExpressionServiceImpl implements ExpressionService {
+
+  private Tokenizer tokenizer;
+  private ExpressionConverter expressionConverter;
+  private VariableService variableService;
+  private ExpressionEvaluator expressionEvaluator;
 
   @Override
   public boolean isAllowed(String conditionalExpression, Map<String, Object> user)
@@ -35,17 +41,21 @@ public class ExpressionServiceImpl implements ExpressionService {
 
   private AbstractOperand evaluateExpression(String expression, Map<String, Object> userMap)
       throws InvalidTokenException, UnsupportedOperandException, InvalidEvaluationException {
-    List<Token> tokenized = Tokenizer.tokenize(expression);
 
-    ExpressionConverter expressionConverter = new InfixToPostfixConverter();
+    //DI
+    UserService userService = new UserServiceImpl(userMap);
+    variableService = new VariableServiceImpl(userService);
+    expressionEvaluator = new PostfixExpressionEvaluator();
+    expressionConverter = new InfixToPostfixConverter();
+    tokenizer = new TokenizerImpl();
+
+    List<Token> tokenized = tokenizer.tokenize(expression);
+
     List<Token> postfixExpression = expressionConverter.convert(tokenized);
 
-    UserService userService = new UserServiceImpl(userMap);
-    VariableService variableService = new VariableServiceImpl(userService);
     List<Token> expressionWithoutVariables =
         variableService.replaceVariablesWithOperands(postfixExpression);
 
-    ExpressionEvaluator expressionEvaluator = new PostfixExpressionEvaluator();
     return expressionEvaluator.evaluate(expressionWithoutVariables);
   }
 }
