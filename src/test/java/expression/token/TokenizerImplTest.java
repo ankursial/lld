@@ -1,0 +1,61 @@
+package expression.token;
+
+import expression.myexception.InvalidTokenException;
+import expression.token.operand.BooleanOperand;
+import expression.token.operand.ListOperand;
+import expression.token.operand.StringOperand;
+import expression.token.operand.IntegerOperand;
+import expression.token.operand.VariableOperand;
+import expression.token.operator.AndOperator;
+import expression.token.operator.LessThanOperator;
+import expression.token.operator.NoneOfOperator;
+import expression.token.parenthesis.LeftParenthesis;
+import expression.token.parenthesis.RightParenthesis;
+import expression.tokenizer.TokenizerImpl;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
+
+
+class TokenizerImplTest {
+
+  TokenizerImpl tokenizer = new TokenizerImpl();
+  
+  @Test
+  void tokenizeTest() throws InvalidTokenException {
+    String input = "(5 < 10) AND variable \"$string\" NONEOF (5, 10, 15) true";
+    List<Token> result = tokenizer.tokenize(input);
+    Assert.assertEquals(new LeftParenthesis(), result.get(0));
+    Assert.assertEquals(new IntegerOperand("5"), result.get(1));
+    Assert.assertEquals(new LessThanOperator(), result.get(2));
+    Assert.assertEquals(new IntegerOperand("10"), result.get(3));
+    Assert.assertEquals(new RightParenthesis(), result.get(4));
+    Assert.assertEquals(new AndOperator(), result.get(5));
+    Assert.assertEquals(new VariableOperand("variable"), result.get(6));
+    Assert.assertEquals(new StringOperand("$string"), result.get(7));
+    Assert.assertEquals(new NoneOfOperator(), result.get(8));
+
+    List<Token> tokenList = new ArrayList<>();
+    tokenList.add(new IntegerOperand("5"));
+    tokenList.add(new IntegerOperand("10"));
+    tokenList.add(new IntegerOperand("15"));
+    ListOperand listOperand = new ListOperand("(5, 10, 15)", tokenList);
+    Assert.assertEquals(listOperand, result.get(9));
+
+    Assert.assertEquals(new BooleanOperand("true"), result.get(10));
+  }
+
+  @Test
+  void tokenizeTestWithList() throws InvalidTokenException {
+    String input = "(5, 10, \"ABCD\")";
+    List<Token> result = tokenizer.tokenize(input);
+    List<Token> expectedGroupTokens = new ArrayList<>();
+    expectedGroupTokens.add(new IntegerOperand("5"));
+    expectedGroupTokens.add(new IntegerOperand("10"));
+    expectedGroupTokens.add(new StringOperand("ABCD"));
+    ListOperand listOperand = new ListOperand("(5, 10, \"ABCD\")", expectedGroupTokens);
+    Assert.assertEquals(Collections.singletonList(listOperand), result);
+  }
+}
