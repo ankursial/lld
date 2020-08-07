@@ -1,6 +1,6 @@
 @startuml
 
-title __LLD's Class Diagram 3: Tokenizers__\n
+title __LLD's Class Diagram 2: Tokens__\n
 
 '  interface expression.converter.ExpressionConverter
 '  interface expression.evaluator.ExpressionEvaluator
@@ -33,7 +33,7 @@ title __LLD's Class Diagram 3: Tokenizers__\n
 '    abstract expression.token.operator.AbstractOperator
 '    abstract expression.token.parenthesis.AbstractParenthesis
 '
-'    expression.tokenizer.Tokenizer --> expression.token.Token : generates
+'  expression.tokenizer.Tokenizer --> expression.token.Token : generates
 '  expression.token.FixedValueToken .up.|> expression.token.Token
 '  expression.token.operand.AbstractOperand .up.|> expression.token.Token
 '  expression.token.operand.BooleanOperand -up-|> expression.token.operand.AbstractOperand
@@ -49,6 +49,28 @@ title __LLD's Class Diagram 3: Tokenizers__\n
 '  expression.token.parenthesis.AbstractParenthesis -up-|> expression.token.FixedValueToken
 '  expression.token.parenthesis.LeftParenthesis -up-|> expression.token.parenthesis.AbstractParenthesis
 '  expression.token.parenthesis.RightParenthesis -up-|> expression.token.parenthesis.AbstractParenthesis
+'
+'    expression.token.operand.LongOperand -up-|> expression.token.operand.NumberOperand
+'    expression.token.operand.FloatOperand -up-|> expression.token.operand.NumberOperand
+'    expression.token.operand.DoubleOperand -up-|> expression.token.operand.NumberOperand
+'    expression.token.operator.GraterThanOperator -up-|> expression.token.operator.AbstractOperator
+'    expression.token.operator.GraterThanEqualToOperator -up-|> expression.token.operator.AbstractOperator
+'    expression.token.operator.LessThanEqualToOperator -up-|> expression.token.operator.AbstractOperator
+'    expression.token.operator.EqualToOperator -up-|> expression.token.operator.AbstractOperator
+'    expression.token.operator.NotEqualToOperator -up-|> expression.token.operator.AbstractOperator
+'    expression.token.operator.BetweenOperator -up-|> expression.token.operator.AbstractOperator
+'    expression.token.operator.AllOfOperator -up-|> expression.token.operator.AbstractOperator
+'
+'    expression.token.operator.GraterThanOperator -up[hidden]- expression.token.operator.GraterThanEqualToOperator
+'    expression.token.operator.GraterThanEqualToOperator -up[hidden]- expression.token.operator.LessThanEqualToOperator
+'    expression.token.operator.LessThanEqualToOperator -up[hidden]- expression.token.operator.GraterThanOperator
+'    expression.token.operator.GraterThanOperator -up[hidden]- expression.token.operator.EqualToOperator
+'    expression.token.operator.EqualToOperator -up[hidden]- expression.token.operator.NotEqualToOperator
+'    expression.token.operator.NotEqualToOperator -up[hidden]- expression.token.operator.BetweenOperator
+'    expression.token.operator.BetweenOperator -up[hidden]- expression.token.operator.AllOfOperator
+'    expression.token.operator.AllOfOperator -up[hidden]- expression.token.operator.AndOperator
+'    expression.token.operator.AndOperator -up[hidden]- expression.token.operator.LessThanOperator
+'    expression.token.operator.LessThanOperator -up[hidden]- expression.token.operator.NoneOfOperator
 
 
   interface expression.tokenizer.Tokenizer
@@ -71,13 +93,36 @@ title __LLD's Class Diagram 3: Tokenizers__\n
   expression.tokenextractor.operand.ListOperandExtractor .up.|> expression.tokenextractor.TokenExtractor
   expression.tokenextractor.operand.StringOperandExtractor .up.|> expression.tokenextractor.TokenExtractor
   expression.tokenextractor.operand.VariableOperandExtractor .up.|> expression.tokenextractor.TokenExtractor
-  expression.tokenextractor.operator.AbstractOperatorExtractor -up-|> expression.tokenextractor.AbstractFixedValueTokenExtractor
+  expression.tokenextractor.operator.AbstractOperatorExtractor -right-|> expression.tokenextractor.AbstractFixedValueTokenExtractor
   expression.tokenextractor.operator.AndOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
   expression.tokenextractor.operator.LessThanOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
   expression.tokenextractor.operator.NoneOfOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
   expression.tokenextractor.parenthesis.AbstractParenthesisExtractor -up-|> expression.tokenextractor.AbstractFixedValueTokenExtractor
   expression.tokenextractor.parenthesis.LeftParenthesisExtractor -up-|> expression.tokenextractor.parenthesis.AbstractParenthesisExtractor
   expression.tokenextractor.parenthesis.RightParenthesisExtractor -up-|> expression.tokenextractor.parenthesis.AbstractParenthesisExtractor
+
+    expression.tokenextractor.operand.LongOperandExtractor -up-|> expression.tokenextractor.operand.AbstractNumberOperandExtractor
+    expression.tokenextractor.operand.FloatOperandExtractor -up-|> expression.tokenextractor.operand.AbstractNumberOperandExtractor
+    expression.tokenextractor.operand.DoubleOperandExtractor -up-|> expression.tokenextractor.operand.AbstractNumberOperandExtractor
+    expression.tokenextractor.operator.GraterThanOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
+    expression.tokenextractor.operator.GraterThanEqualToOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
+    expression.tokenextractor.operator.LessThanEqualToOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
+    expression.tokenextractor.operator.EqualToOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
+    expression.tokenextractor.operator.NotEqualToOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
+    expression.tokenextractor.operator.BetweenOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
+    expression.tokenextractor.operator.AllOfOperatorExtractor -up-|> expression.tokenextractor.operator.AbstractOperatorExtractor
+
+    expression.tokenextractor.operator.GraterThanOperatorExtractor -up[hidden]- expression.tokenextractor.operator.GraterThanEqualToOperatorExtractor
+    expression.tokenextractor.operator.GraterThanEqualToOperatorExtractor -up[hidden]- expression.tokenextractor.operator.LessThanEqualToOperatorExtractor
+    expression.tokenextractor.operator.LessThanEqualToOperatorExtractor -up[hidden]- expression.tokenextractor.operator.GraterThanOperatorExtractor
+    expression.tokenextractor.operator.GraterThanOperatorExtractor -up[hidden]- expression.tokenextractor.operator.EqualToOperatorExtractor
+    expression.tokenextractor.operator.EqualToOperatorExtractor -up[hidden]- expression.tokenextractor.operator.NotEqualToOperatorExtractor
+    expression.tokenextractor.operator.NotEqualToOperatorExtractor -up[hidden]- expression.tokenextractor.operator.BetweenOperatorExtractor
+    expression.tokenextractor.operator.BetweenOperatorExtractor -up[hidden]- expression.tokenextractor.operator.AllOfOperatorExtractor
+    expression.tokenextractor.operator.AllOfOperatorExtractor -up[hidden]- expression.tokenextractor.operator.AndOperatorExtractor
+    expression.tokenextractor.operator.AndOperatorExtractor -up[hidden]- expression.tokenextractor.operator.LessThanOperatorExtractor
+    expression.tokenextractor.operator.LessThanOperatorExtractor -up[hidden]- expression.tokenextractor.operator.NoneOfOperatorExtractor
+
 '  expression.tokenizer.TokenizerImpl .up.|> expression.tokenizer.Tokenizer
 
 
