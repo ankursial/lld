@@ -54,11 +54,15 @@ and so on where Object should be
 1. LessThan: "<"
 1. NONEOF: "variable NONEOF (1,2,3)"
 1. AND: "30 < age AND variable NONEOF (1,2,3)"
+
+Note: Others not added to keep PR simple and are similar to ones added above.
  
 ## Supported data types
 1. Boolean: true/false
 1. Integer
 1. String
+
+Note: Others not added to keep PR simple and are similar to ones added above. 
 
 For variables,use map. 
 For example see Main: https://github.com/ankursial/lld/blob/expression-evaluator/src/main/java/expression/Main.java
