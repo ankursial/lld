@@ -3,7 +3,9 @@
 ## Intro
 
 ## Class Diagrams
-![Test Image 1](https://github.com/ankursial/lld/blob/expression-evaluator/UML%20diagrams/Class%20diagram%201-overview.png)
+![Image 1](https://github.com/ankursial/lld/blob/expression-evaluator/UML%20diagrams/Class%20diagram%201-overview.png)
+![Image 2](https://github.com/ankursial/lld/blob/expression-evaluator/UML%20diagrams/Class%20diagram%202-%20Tokens.png)
+![Image 3](https://github.com/ankursial/lld/blob/expression-evaluator/UML%20diagrams/Class%20diagram%203-%20Tokenizers.png)
 
 ## Execution
 To execute and review the functionality, one could
